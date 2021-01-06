@@ -1,4 +1,4 @@
-default: -p html_report -p tst
+default: -p html_report -p tst --publish-quiet
 
 ### Ambientes ###
 tst: AMBIENTE=tst
