@@ -1,5 +1,5 @@
 Quando('submeto a requisicao de lista das postagens') do
-    @postagem = postagens.lista_postagens
+    @postagem = postagens.listar_postagens
 end
 
 Entao('vejo o status {string} da requisicao') do |status|
@@ -12,7 +12,7 @@ end
 
 Quando('submeto a requisicao das postagens por id especifico') do
   @id = 8
-  @postagem = postagens.lista_postagens_id(@id)
+  @postagem = postagens.listar_postagens_id(@id)
 end
 
 Entao('o corpo') do
@@ -20,29 +20,29 @@ Entao('o corpo') do
 end
 
 Dado('que eu insiros os dados') do
-  pending # Write code here that turns the phrase above into concrete actions
+  @postagem = postagens.dados
 end
 
 Quando('submeto a requisicao de criar uma nova postagem') do
-  pending # Write code here that turns the phrase above into concrete actions
+    @postagem = postagens.incluir_nova_postagem
 end
 
-Entao('o id {string}') do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+Entao('o novo id de criacao {int}') do |id|
+    expect(@postagem.parsed_response['id']).to eql id
 end
 
 Dado('que eu altero os dados') do
-  pending # Write code here that turns the phrase above into concrete actions
+    @postagem = postagens.dados
 end
 
-Quando('submeto a requisicao de alteracao da postagem com id {string}') do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+Quando('submeto a requisicao de alteracao da postagem com id {int}') do |idAlteracao|
+    @postagem = postagens.alterar_postagem(idAlteracao)
 end
 
 Entao('o id que foi alterado') do
-  pending # Write code here that turns the phrase above into concrete actions
+    expect(@postagem.parsed_response['id'])
 end
 
-Quando('submeto a requisicao de delecao') do
-  pending # Write code here that turns the phrase above into concrete actions
+Quando('submeto a requisicao de delecao com o seguinte id {int}') do |idDelecao|
+    @postagem = postagens.deletar_postagem(idDelecao)
 end
